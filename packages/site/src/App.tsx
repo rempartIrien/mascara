@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { Test } from "@mascara/core";
+import { ReactElement, useState } from "react";
 import "./App.css";
 
-import { Test } from "@mascara/core";
-
-function App() {
+function App(): ReactElement {
   const [count, setCount] = useState(0);
 
   return (

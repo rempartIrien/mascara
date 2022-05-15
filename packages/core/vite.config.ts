@@ -1,11 +1,12 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import dts from "vite-plugin-dts";
-import * as path from "node:path";
 import * as fs from "node:fs/promises";
+import * as path from "node:path";
 
 const buildDirectory = "dist";
 const rootFilePattern = "mascara.core";
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -40,6 +41,7 @@ export default defineConfig({
         // for externalized deps
         globals: {
           react: "React",
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           "react-dom": "ReactDOM",
         },
       },
