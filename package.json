@@ -4,7 +4,9 @@
   "description": "mascara design system hub",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test --workspaces --if-present"
+    "test": "npm run test --workspaces --if-present",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged --config lint-staged.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
     "packages/site"
   ],
   "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.6.2"
   }
 }
