@@ -1,0 +1,23 @@
+{
+  "name": "mascara",
+  "version": "0.1.0",
+  "description": "mascara design system hub",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test --workspaces --if-present"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rempartIrien/mascara.git"
+  },
+  "author": "rempartIrien",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rempartIrien/mascara/issues"
+  },
+  "homepage": "https://github.com/rempartIrien/mascara#readme",
+  "workspaces": [
+    "packages/core",
+    "packages/site"
+  ]
+}
