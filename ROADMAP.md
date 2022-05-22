@@ -16,7 +16,7 @@ The goal is to provide a CSS-in-JS solution (`@mascara/core` and `@mascara/react
    1. React ✅
    2. react-i18n (for website)
    3. react-router (for website)
-   4. jest
+   4. jest ✅
    5. testing-library (for website)
    6. Storybook (for website)
 3. Set up

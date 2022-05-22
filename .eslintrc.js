@@ -105,6 +105,7 @@ module.exports = {
           "./tsconfig.eslint.json",
           "./packages/*/tsconfig.json",
           "./packages/*/tsconfig.node.json",
+          "./packages/*/tsconfig.eslint.json",
         ],
         ecmaFeatures: {
           jsx: true,
