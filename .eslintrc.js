@@ -74,6 +74,7 @@ module.exports = {
         message: "Do not commit `test.only`. Use `test` instead.",
       },
     ],
+    "import/no-unresolved": "error",
     "import/order": [
       "error",
       {
@@ -111,6 +112,19 @@ module.exports = {
           jsx: true,
         },
         sourceType: "module",
+      },
+      settings: {
+        "import/resolver": {
+          typescript: {
+            alwaysTryTypes: true,
+            project: [
+              "./tsconfig.eslint.json",
+              "./packages/*/tsconfig.json",
+              "./packages/*/tsconfig.node.json",
+              "./packages/*/tsconfig.eslint.json",
+            ],
+          },
+        },
       },
       rules: {
         "@typescript-eslint/array-type": [
