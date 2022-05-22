@@ -27,9 +27,10 @@ The goal is to provide a CSS-in-JS solution (`@mascara/core` and `@mascara/react
    5. Write README file properly
    6. Dependabot, Notification on new dependency releases
 4. Start developping
-   1. generate CSS class names
-   2. Handle `&`
-   3. Handle media queries
+   1. generate CSS class names ✅
+   2. generate CSS rules
+   3. Handle `&`
+   4. Handle media queries
 
 ### Concerns
 
