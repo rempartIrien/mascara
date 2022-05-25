@@ -26,7 +26,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "node --inspect ../../node_modules/jest/bin/jest.js --runInBand --watch"
   },
   "peerDependencies": {
     "react": "^18.0.0",
@@ -39,6 +40,7 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
     "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "ts-jest": "^28.0.2",

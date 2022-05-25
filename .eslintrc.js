@@ -1,7 +1,8 @@
 /**
   npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser \
     eslint eslint-config-prettier eslint-config-typescript eslint-plugin-import \
-    eslint-plugin-react eslint-plugin-react-hooks prettier typescript
+    eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jest prettier \
+    typescript
  */
 
 module.exports = {
@@ -255,6 +256,16 @@ module.exports = {
             trailingUnderscore: "allow",
           },
         ],
+      },
+    },
+    {
+      files: ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
+      plugins: ["jest"],
+      extends: ["plugin:jest/recommended"],
+      rules: {
+        // you should turn the original rule off *only* for test files
+        "@typescript-eslint/unbound-method": "off",
+        "jest/unbound-method": "error",
       },
     },
   ],
