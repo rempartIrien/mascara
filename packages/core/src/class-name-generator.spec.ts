@@ -18,7 +18,7 @@ describe("Class name generator", () => {
           color: "red",
           display: "flex",
         },
-        expected: "ongrgh",
+        expected: "mascara-ongrgh",
       },
       {
         style: {
@@ -46,21 +46,21 @@ describe("Class name generator", () => {
           textDecoration: "underline",
           gap: 0,
         },
-        expected: "-829u26",
+        expected: "mascara--829u26",
       },
       {
         style: {
           color: "red",
           display: "flex",
         },
-        expected: "ongrgh",
+        expected: "mascara-ongrgh",
       },
       {
         style: {
           color: "blue",
           display: "flex",
         },
-        expected: "-80vulk",
+        expected: "mascara--80vulk",
       },
     ];
 

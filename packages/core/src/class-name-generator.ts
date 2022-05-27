@@ -13,5 +13,5 @@ function hash(s: string): number {
 }
 
 export default function generateCssClassName(style: Properties): string {
-  return hash(JSON.stringify(style)).toString(32);
+  return "mascara-" + hash(JSON.stringify(style)).toString(32);
 }
