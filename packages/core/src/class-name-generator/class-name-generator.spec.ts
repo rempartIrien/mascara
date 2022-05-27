@@ -1,5 +1,6 @@
+import CSS from "../css-types";
+
 import generateCssClassName from "./class-name-generator";
-import CSS from "./css-types";
 
 describe("Class name generator", () => {
   it("should exist", () => {

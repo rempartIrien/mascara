@@ -9,7 +9,7 @@ export default function css(
 ): string {
   const ruleName = generateCssClassName(styleProperties);
   const cssRuleString: string = generateCssRuleString(
-    ruleName,
+    `.${ruleName}`,
     styleProperties,
   );
   const { sheet } = getRoot();

@@ -1,4 +1,4 @@
-import CSS from "./css-types";
+import CSS from "../css-types";
 
 export default function generateCssRuleString(
   ruleName: string,
@@ -8,7 +8,7 @@ export default function generateCssRuleString(
   const properties = Object.entries(styleProperties).map(([key, value]) => {
     return `${toKebabCase(key)}: ${String(value)};`;
   });
-  return `.${ruleName} { ${properties.join("")} }`;
+  return `${ruleName} { ${properties.join(" ")} }`;
 }
 
 function toKebabCase(s: string): string {

@@ -1,4 +1,4 @@
-import CSS from "./css-types";
+import CSS from "../css-types";
 
 // See https://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
 function hash(s: string): number {
