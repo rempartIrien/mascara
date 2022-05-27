@@ -3,7 +3,7 @@ interface CssRoot {
   reset: () => void;
 }
 
-interface CssSheet {
+export interface CssSheet {
   readonly cssRules: CSSRuleList;
   readonly ownerRule: null;
   deleteRule(index: number): void;
