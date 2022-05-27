@@ -1,5 +1,5 @@
 {
-  "name": "@rempartirien/site",
+  "name": "@mascara/site",
   "version": "0.1.0",
   "description": "mascara design system site",
   "main": "index.js",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@mascara/core": "*",
+    "@mascara/react": "*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

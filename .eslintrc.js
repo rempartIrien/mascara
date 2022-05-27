@@ -92,6 +92,11 @@ module.exports = {
         ignoreMemberSort: false,
       },
     ], // Everything else done by `import` plugin
+    "react/hook-use-state": "error",
+    "react/no-array-index-key": "error",
+    "react/jsx-key": "error",
+    "react/jsx-pascal-case": "error",
+    "react/self-closing-comp": "error",
   },
   overrides: [
     {

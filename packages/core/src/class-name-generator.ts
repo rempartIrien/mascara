@@ -1,4 +1,4 @@
-import { Properties } from "./css-types";
+import CSS from "./css-types";
 
 // See https://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
 function hash(s: string): number {
@@ -12,6 +12,6 @@ function hash(s: string): number {
   return hash;
 }
 
-export default function generateCssClassName(style: Properties): string {
+export default function generateCssClassName(style: CSS.Properties): string {
   return "mascara-" + hash(JSON.stringify(style)).toString(32);
 }

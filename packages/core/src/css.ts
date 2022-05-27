@@ -1,16 +1,12 @@
 import generateCssClassName from "./class-name-generator";
 import generateCssRuleString from "./css-rule-generator";
-import { Properties } from "./css-types";
+import CSS from "./css-types";
 import getRoot, { CssSheet } from "./root";
 
-export function css(styleProperties: Properties): string {
-  return innerCss(styleProperties).ruleName;
-}
-
-export function innerCss(
-  styleProperties: Properties,
+export default function css(
+  styleProperties: CSS.Properties,
   index?: number,
-): { ruleName: string; insertPosition: number } {
+): string {
   const ruleName = generateCssClassName(styleProperties);
   const cssRuleString: string = generateCssRuleString(
     ruleName,
@@ -18,22 +14,19 @@ export function innerCss(
   );
   const { sheet } = getRoot();
   const alreadyThere = findPositionInSheet(sheet, cssRuleString);
-  if (alreadyThere > -1) {
-    return { ruleName, insertPosition: alreadyThere };
+  if (alreadyThere) {
+    return ruleName;
   }
-  const insertPosition = sheet.insertRule(
+  const i = sheet.insertRule(
     cssRuleString,
     (index || index === 0) && [...sheet.cssRules].length > 0
       ? index
       : [...sheet.cssRules].length,
   );
-
-  return { ruleName, insertPosition };
+  console.log("insert", cssRuleString, "at position", index, "real index", i);
+  return ruleName;
 }
 
-function findPositionInSheet(sheet: CssSheet, cssRuleString: string): number {
-  const insertPosition: number = [...sheet.cssRules].findIndex(
-    ({ cssText }) => cssText === cssRuleString,
-  );
-  return insertPosition;
+function findPositionInSheet(sheet: CssSheet, cssRuleString: string): boolean {
+  return [...sheet.cssRules].some(({ cssText }) => cssText === cssRuleString);
 }

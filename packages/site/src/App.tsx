@@ -1,6 +1,7 @@
-import { Test } from "@mascara/core";
 import { ReactElement, useState } from "react";
+
 import "./App.css";
+import Test from "./Test";
 
 function App(): ReactElement {
   const [count, setCount] = useState(0);
@@ -14,7 +15,7 @@ function App(): ReactElement {
             count is: {count}
           </button>
         </p>
-        <Test></Test>
+        <Test />
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>

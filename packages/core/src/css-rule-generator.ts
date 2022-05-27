@@ -1,8 +1,8 @@
-import { Properties } from "./css-types";
+import CSS from "./css-types";
 
 export default function generateCssRuleString(
   ruleName: string,
-  styleProperties: Properties,
+  styleProperties: CSS.Properties,
 ): string {
   // FIXME: We assume we have a simple flat object for now.
   const properties = Object.entries(styleProperties).map(([key, value]) => {

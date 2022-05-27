@@ -1,3 +1,4 @@
+import CSS, { css } from "@mascara/core";
 import {
   ComponentClass,
   ForwardRefExoticComponent,
@@ -9,35 +10,32 @@ import {
   forwardRef,
 } from "react";
 
-import { innerCss } from "./css";
-import { Properties } from "./css-types";
-
-const MASCARA_COUNTER = "data-mascara-counter";
 const MASCARA_DISPLAY_NAME = "MascaraForwarded";
 
 type CommonProperties = PropsWithChildren<{
   className?: string;
-  css?: Properties;
-  [MASCARA_COUNTER]?: number;
+  css?: CSS.Properties;
 }>;
 
 // FIXME: This is for React only. Move it to another package.
-export function styled<T, P>(
+export default function styled<T, P>(
   elementConstructor: FunctionComponent<P> | ComponentClass<P> | string,
-  styleProperties: Properties,
+  styleProperties: CSS.Properties,
 ): ForwardRefExoticComponent<
   PropsWithoutRef<P & CommonProperties> & RefAttributes<T>
 > {
   const forwardedFactory = forwardRef<T, P & CommonProperties>(
-    ({ css: c, ...props }, ref) => {
-      // Insert global and specific CSS rules before inheritors' own rules.
-      const { ruleName: cssClassName, insertPosition: globalPosition } =
-        innerCss(styleProperties, props[MASCARA_COUNTER]);
-      const specificClassName = c
-        ? innerCss(c, globalPosition + 1).ruleName
-        : "";
-
-      const new$$mascaracounter = globalPosition;
+    ({ css: instanceRules, ...props }, ref) => {
+      // Insert global and specific CSS rules after inheritors' own rules.
+      // We insert class styles at index 0. When an inner class is instanciated
+      // the instance insert its style at position 0 and the outer component get
+      // its rules pushed at higher positions.
+      const cssClassName = css(styleProperties, 0);
+      // Insert instance styles at index 1 so that there are after the class
+      // rules. They will be pushed by inner class rules (inserted at position
+      // 1 too) ; alos, they will stay after corresponding class rules (because
+      // inserted after) and so after inner class rules.
+      const specificClassName = instanceRules ? css(instanceRules, 1) : "";
 
       // Compute new className attribute
       const fullCssClasses = specificClassName
@@ -54,7 +52,6 @@ export function styled<T, P>(
         ...props,
         ref,
         className,
-        [MASCARA_COUNTER]: new$$mascaracounter,
       } as P & CommonProperties;
       const newElement = createElement(elementConstructor, newProps);
       return newElement;

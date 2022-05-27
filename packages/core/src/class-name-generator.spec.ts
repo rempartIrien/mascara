@@ -1,5 +1,5 @@
 import generateCssClassName from "./class-name-generator";
-import { Properties } from "./css-types";
+import CSS from "./css-types";
 
 describe("Class name generator", () => {
   it("should exist", () => {
@@ -12,7 +12,7 @@ describe("Class name generator", () => {
   });
 
   it("should be deterministic", () => {
-    const foo: { style: Properties; expected: string }[] = [
+    const foo: { style: CSS.Properties; expected: string }[] = [
       {
         style: {
           color: "red",
