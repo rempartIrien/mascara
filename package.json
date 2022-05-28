@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test --workspaces --if-present",
+    "test:staged": "npm run test:staged --workspaces --if-present",
     "prepare": "husky install",
     "build": "npm run build  --workspaces --if-present",
     "lint": "prettier --check . && eslint --ext=js,jsx,ts,tsx  --max-warnings=0 .",
