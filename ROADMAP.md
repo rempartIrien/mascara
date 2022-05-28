@@ -17,7 +17,7 @@ The goal is to provide a CSS-in-JS solution (`@mascara/core` and `@mascara/react
    2. react-i18n (for website)
    3. react-router (for website)
    4. jest ✅
-   5. testing-library (for website)
+   5. testing-library ✅
    6. Storybook (for website)
 3. Set up
    1. Socket for GitHub
@@ -28,7 +28,7 @@ The goal is to provide a CSS-in-JS solution (`@mascara/core` and `@mascara/react
    6. Dependabot, Notification on new dependency releases
 4. Start developping
    1. generate CSS class names ✅
-   2. generate CSS rules
+   2. generate CSS rules ✅
    3. Handle `&`
    4. Handle media queries
 
