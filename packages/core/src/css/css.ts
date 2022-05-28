@@ -1,7 +1,7 @@
-import generateCssClassName from "./class-name-generator";
-import generateCssRuleString from "./css-rule-generator";
-import CSS from "./css-types";
-import getRoot, { CssSheet } from "./root";
+import generateCssClassName from "../class-name-generator";
+import generateCssRuleString from "../css-rule-generator";
+import CSS from "../css-types";
+import getRoot, { CssSheet } from "../root";
 
 export default function css(
   styleProperties: CSS.Properties,
