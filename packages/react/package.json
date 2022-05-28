@@ -27,7 +27,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "jest",
-    "test:staged": "jest --bail --findRelatedTests",
+    "test:staged": "jest --bail --findRelatedTests --passWithNoTests",
     "test:watch": "node --inspect ../../node_modules/jest/bin/jest.js --runInBand --watch"
   },
   "peerDependencies": {

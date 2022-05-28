@@ -17,13 +17,12 @@ export default function css(
   if (alreadyThere) {
     return ruleName;
   }
-  const i = sheet.insertRule(
+  sheet.insertRule(
     cssRuleString,
     (index || index === 0) && [...sheet.cssRules].length > 0
       ? index
       : [...sheet.cssRules].length,
   );
-  console.log("insert", cssRuleString, "at position", index, "real index", i);
   return ruleName;
 }
 
