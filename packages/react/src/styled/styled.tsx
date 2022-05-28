@@ -17,7 +17,6 @@ type CommonProperties = PropsWithChildren<{
   css?: CSS.Properties;
 }>;
 
-// FIXME: This is for React only. Move it to another package.
 export default function styled<T, P>(
   elementConstructor: FunctionComponent<P> | ComponentClass<P> | string,
   styleProperties: CSS.Properties,
