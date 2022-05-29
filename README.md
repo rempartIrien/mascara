@@ -18,7 +18,7 @@ This repository uses NPM workspaces and contains:
 
 This is something I looked for at the beginning. It's seems natural, logical to remove what we add, to unsubscribe from what we subscribed to; we were told to.
 
-That's why I sought for a solution and I did not found anything simple, so I browsed other library repositories in quest of salute. And I found stuff like:
+That's why I sought for a solution and I did not found anything simple, so I browsed other library repositories in search of salvation. And I found stuff like:
 
 - [Someone noting that styles do not get removed in Stitches](https://github.com/modulz/stitches/issues/884)
 - [Someone noting that styles do not get removed in Emotion](https://github.com/emotion-js/emotion/issues/488)
