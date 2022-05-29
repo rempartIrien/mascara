@@ -59,13 +59,31 @@ describe("css", () => {
       css({ color: "blue" });
       css({ color: "yellow" });
       expect([...sheet.cssRules].length).toBe(3);
-      const ruleName4 = css({ color: "green" }, 1);
+      const ruleName4 = css({ color: "green" }, { index: 1 });
       expect([...sheet.cssRules].length).toBe(4);
       expect(
         [...sheet.cssRules].findIndex(({ cssText }) =>
           cssText.includes(ruleName4),
         ),
       ).toBe(1);
+    });
+  });
+
+  describe("when a prefix is given", () => {
+    it("should name the rule prefixed wuth the given prefix", () => {
+      const prefix = "__mascara__";
+      const { sheet } = getRoot();
+      const ruleName1 = css({ color: "green" });
+      css({ color: "blue" });
+      css({ color: "yellow" });
+      expect([...sheet.cssRules].length).toBe(3);
+      const ruleName4 = css({ color: "green" }, { prefix });
+      expect([...sheet.cssRules].length).toBe(4);
+      expect(ruleName1).toBe(`mascara--1occ3bg`);
+      expect(ruleName4).toBe(`${prefix}mascara--1occ3bg`);
+      expect(
+        [...sheet.cssRules].some(({ cssText }) => cssText.includes(ruleName4)),
+      ).toBeTruthy();
     });
   });
 

@@ -3,16 +3,28 @@ import generateCssRuleString from "../css-rule-generator";
 import CSS from "../css-types";
 import getRoot, { CssSheet } from "../root";
 
+interface CssOptions {
+  index: number;
+  prefix: string;
+}
+
 export default function css(
   styleProperties: CSS.Properties,
-  index?: number,
+  options?: Partial<CssOptions>,
 ): string {
-  const ruleName = generateCssClassName(styleProperties);
+  const { sheet } = getRoot();
+  const defaultOptions = {
+    index: [...sheet.cssRules].length,
+    prefix: "",
+  };
+  const { index, prefix } = { ...defaultOptions, ...options };
+
+  const ruleName = prefix + generateCssClassName(styleProperties);
   const cssRuleString: string = generateCssRuleString(
     `.${ruleName}`,
     styleProperties,
   );
-  const { sheet } = getRoot();
+
   const alreadyThere = findPositionInSheet(sheet, cssRuleString);
   if (alreadyThere) {
     return ruleName;
