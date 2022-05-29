@@ -23,18 +23,12 @@ export default function styled<T, P>(
 ): ForwardRefExoticComponent<
   PropsWithoutRef<P & CommonProperties> & RefAttributes<T>
 > {
+  const cssClassName = css(styleProperties);
   const forwardedFactory = forwardRef<T, P & CommonProperties>(
     ({ css: instanceRules, ...props }, ref) => {
-      // Insert global and specific CSS rules after inheritors' own rules.
-      // We insert class styles at index 0. When an inner class is instanciated
-      // the instance insert its style at position 0 and the outer component get
-      // its rules pushed at higher positions.
-      const cssClassName = css(styleProperties, 0);
-      // Insert instance styles at index 1 so that there are after the class
-      // rules. They will be pushed by inner class rules (inserted at position
-      // 1 too) ; alos, they will stay after corresponding class rules (because
-      // inserted after) and so after inner class rules.
-      const specificClassName = instanceRules ? css(instanceRules, 1) : "";
+      const specificClassName = instanceRules
+        ? css(instanceRules, { prefix: cssClassName })
+        : "";
 
       // Compute new className attribute
       const fullCssClasses = specificClassName

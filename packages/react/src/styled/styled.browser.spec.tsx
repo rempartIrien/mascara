@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { ReactElement } from "react";
 
 import styled from "./styled";
@@ -122,5 +122,82 @@ describe("styled", () => {
     expect(
       getComputedStyle(redFontSize).getPropertyValue("text-transform"),
     ).toBe("capitalize");
+  });
+
+  describe("when defining several components", () => {
+    it("should order styles properly", () => {
+      const One = styled("div", { color: "green" });
+      const Two = styled(One, { color: "yellow" });
+      const Three = styled(Two, { color: "red" });
+
+      render(<Two>two</Two>);
+      render(<Three>three</Three>);
+      const { getByText } = render(<One>one</One>);
+
+      expect(getComputedStyle(getByText("one")).getPropertyValue("color")).toBe(
+        "green",
+      );
+      expect(getComputedStyle(getByText("two")).getPropertyValue("color")).toBe(
+        "yellow",
+      );
+      expect(
+        getComputedStyle(getByText("three")).getPropertyValue("color"),
+      ).toBe("red");
+    });
+
+    it("should favor instance styles instead of class styles", () => {
+      const One = styled("div", { color: "red" });
+      const Two = styled(One, { color: "green" });
+
+      render(<Two>two</Two>);
+      const { getByText } = render(
+        <Two css={{ color: "blue" }}>twoWithCss</Two>,
+      );
+      const two = getByText("two");
+      const twoWithCss = getByText("twoWithCss");
+      expect(getComputedStyle(two).getPropertyValue("color")).toBe("green");
+      expect(getComputedStyle(twoWithCss).getPropertyValue("color")).toBe(
+        "blue",
+      );
+    });
+
+    it("cannot work properly when used with a constructor giving instance styles", () => {
+      const One = styled("div", { color: "red" });
+      const Two = styled(
+        (props) => <One css={{ color: "yellow" }} {...props} />,
+        { color: "green" },
+      );
+
+      render(<Two>two</Two>);
+      const { getByText } = render(
+        <Two css={{ color: "blue" }}>twoWithCss</Two>,
+      );
+      const two = getByText("two");
+      const twoWithCss = getByText("twoWithCss");
+      expect(getComputedStyle(two).getPropertyValue("color")).toBe("yellow");
+      expect(getComputedStyle(twoWithCss).getPropertyValue("color")).toBe(
+        "yellow",
+      );
+    });
+
+    it("should favor instance styles even if already declared beforehands", () => {
+      const One = styled("div", { color: "red" });
+      const Two = styled(One, { color: "green" });
+
+      render(<Two>two</Two>);
+      const { getByText } = render(
+        <Two css={{ color: "red" }}>twoWithCss</Two>,
+      );
+      const two = getByText("two");
+      const twoWithCss = getByText("twoWithCss");
+      expect(getComputedStyle(two).getPropertyValue("color")).toBe("green");
+      expect(getComputedStyle(twoWithCss).getPropertyValue("color")).toBe(
+        "red",
+      );
+    });
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });
